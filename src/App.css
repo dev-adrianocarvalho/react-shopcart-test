@@ -1,38 +1,119 @@
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  background: #ededed;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  display: flex;
+  width: 100%;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 2;
+}
+.App-header::after {
+  content: " ";
+  position: absolute;
+  top: calc(100% - 10px);
+  width: 100%;
+  height: 8px;
+  border-radius: 50%;
+  border-bottom: 5px solid rgba(0, 0, 0, 0.3);
+  filter: blur(3px);
+  z-index: 1;
+}
+.App-header h1,
+.App-header h2 {
+  margin: 0;
 }
 
-.App-link {
-  color: #61dafb;
+section {
+  padding: 2em;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+button {
+  padding: 0.5em 1.25em;
+  outline: none;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  text-transform: uppercase;
+  background: #fff;
+  box-shadow: 0px 0px 0px 2px rgba(85, 85, 85, 0.2);
+  position: relative;
+}
+button:active {
+  background: #d3d3d3;
+}
+button::before {
+  /* Position the pseudo-element. */
+  content: " ";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  border-radius: 999px;
+
+  /* Create the box shadow at expanded size. */
+  box-shadow: 0 0px 12px 2px rgba(0, 0, 0, 0.2);
+
+  /* Hidden by default. */
+  opacity: 0;
+  transition: opacity 500ms;
+}
+
+button:hover::before {
+  /* Show the pseudo-element on hover. */
+  opacity: 1;
+}
+button + button {
+  margin-left: 4px;
+}
+
+.button--mini {
+  font-size: 0.675em;
+}
+
+.button--primary {
+  background: var(--color-primary);
+  color: #000;
+}
+
+.row {
+  display: flex;
+}
+
+.row[class*="cols-"] {
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.row.cols-4 > div,
+.row.cols-4 > .column {
+  width: calc(25% - 16px);
+}
+
+.row.stretch {
+  justify-content: stretch;
+}
+
+.row.space-between {
+  justify-content: space-between;
+}
+
+.row.items-center {
+  align-items: center;
+}
+
+@media (max-width: 586px) {
+  .row[class*="cols-"] {
+    flex-direction: column;
   }
-  to {
-    transform: rotate(360deg);
+  .row[class*="cols-"] > * {
+    width: 100% !important;
   }
 }
