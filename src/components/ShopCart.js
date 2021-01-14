@@ -21,7 +21,7 @@ export default function ShopCart(props) {
     <>
       {isShowing ? (
         <div className="mini-shopcart">
-          <div class="mini-shopcart__header">
+          <div className="mini-shopcart__header">
             <h2>Seu carrinho</h2>
             <button
               onClick={toggleMiniCart}
@@ -44,23 +44,22 @@ export default function ShopCart(props) {
               </div>
             )}
             {products.map((product) => (
-              <div key={product.sku} class="shopcart-item">
-                <div className="row space-between">
-                  <div className="row items-center">
-                    <div>
-                      <span class="shopcart-item__quantity">
-                        {product.quantity}x
-                      </span>
-                    </div>
-                    <div>
-                      <p>{product.name}</p>
-                      <p className="shopcart-item__price-unit">
-                        R$ {formatNumber(product.price)}
-                      </p>
-                    </div>
+              <div key={product.sku} className="shopcart-item">
+                <div className="row space-between items-center">
+                  <div className="shopcart-item__image">
+                    <img src={product.image} width="64" alt={product.name} />
                   </div>
-                  <div>
-                    <div>
+                  <div className="shopcart-item__info">
+                    <p>{product.name}</p>
+                    <p className="shopcart-item__price-unit">
+                      <span className="shopcart-item__quantity">
+                        {product.quantity}x
+                      </span>{" "}
+                      R$ {formatNumber(product.price)}
+                    </p>
+                  </div>
+                  <div className="shopcart-item__totals">
+                    <div className="shopcart-item__price">
                       <strong>
                         R${" "}
                         {formatNumber(
@@ -69,21 +68,19 @@ export default function ShopCart(props) {
                       </strong>
                     </div>
 
-                    <div>
-                      <button
-                        className="button--mini"
-                        onClick={() => removeItemCart(product.id)}
-                      >
-                        <Icon icon="trash" /> remover
-                      </button>
-                    </div>
+                    <button
+                      className="shopcart-item__remove-button button--mini"
+                      onClick={() => removeItemCart(product.id)}
+                    >
+                      <Icon icon="trash" /> remover
+                    </button>
                   </div>
                 </div>
               </div>
             ))}
           </div>
           {cartCount > 0 && (
-            <div class="mini-shopcart__footer">
+            <div className="mini-shopcart__footer">
               <div className="row space-between items-center mini-shopcart__totals">
                 <div>
                   <h4>Total:</h4>
@@ -94,14 +91,14 @@ export default function ShopCart(props) {
               </div>
               <div className="row space-between">
                 <button onClick={clearCart}>Limpar carrinho</button>
-                <button class="button--primary">Concluir comprar</button>
+                <button className="button--primary">Concluir comprar</button>
               </div>
             </div>
           )}
         </div>
       ) : (
         <button className="floating-shopcart" onClick={toggleMiniCart}>
-          <Icon icon="truck" />
+          <Icon icon="shopping-basket" />
           {cartCount > 0 && <span className="count">{cartCount}</span>}
         </button>
       )}

@@ -21,7 +21,7 @@ const reducer = (state, action) => {
     }
 
     case "REMOVE_ITEM": {
-      const products = state.products.filter((p) => p.id != action.payload);
+      const products = state.products.filter((p) => p.id !== action.payload);
       return { ...state, products };
     }
 
